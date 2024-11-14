@@ -12,6 +12,7 @@ import { useKeyDown } from "@/hooks/use-key-down";
 import EasePicker, { type Ease } from "@/components/ease-picker";
 import { KeyHint } from "@/components/key-hint";
 import { Label } from "@/components/ui/label";
+import { SourceLink } from "./components/source-link";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -50,6 +51,7 @@ function App() {
             </SheetContent>
           </Sheet>
         </div>
+        <SourceLink className="mt-4" />
       </div>
     </main>
   );
