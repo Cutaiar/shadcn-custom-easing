@@ -7,43 +7,52 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useKeyDown } from "@/hooks/use-key-down";
+import EasePicker, { type Ease } from "@/components/ease-picker";
+import { KeyHint } from "@/components/key-hint";
+import { Label } from "@/components/ui/label";
 
 function App() {
   const [open, setOpen] = useState(false);
   useKeyDown("o", () => setOpen((p) => !p));
+  const selectNextEaseKey = "e";
+
+  const [ease, setEase] = useState<Ease>();
 
   return (
     <main className="flex items-center justify-center w-full h-full bg-background">
-      <Sheet open={open} onOpenChange={setOpen}>
-        <SheetTrigger asChild>
-          <Button>Open</Button>
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>What do you think of the easing?</SheetTitle>
-            <SheetDescription>
-              Too fast? Too slow? Just right? This sheet is here to test easing
-              curves.
-            </SheetDescription>
-          </SheetHeader>
-        </SheetContent>
-      </Sheet>
+      <div className="flex flex-col gap-4 justify-center items-start">
+        <div className="space-y-2">
+          <Label>Pick an easing curve</Label>
+          <p className="text-sm text-muted-foreground">
+            Use <KeyHint>{selectNextEaseKey}</KeyHint> to quickly change the
+            easing curve.
+          </p>
+        </div>
+
+        <div className="flex gap-4">
+          <EasePicker ease={ease} onChange={setEase} />
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button>
+                Open <KeyHint>o</KeyHint>
+              </Button>
+            </SheetTrigger>
+            <SheetContent ease={ease} floating>
+              <SheetHeader>
+                <SheetTitle>What do you think of the easing?</SheetTitle>
+                <SheetDescription>
+                  Too fast? Too slow? Just right? This sheet is here to test
+                  easing curves.
+                </SheetDescription>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
     </main>
   );
 }
 
 export default App;
-
-const useKeyDown = (key: string, callback: () => void) => {
-  useEffect(() => {
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === key) {
-        callback();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [callback, key]);
-};
