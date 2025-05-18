@@ -6,4 +6,4 @@ Live at [shadcn-custom-easing.cutaiar.io](https://shadcn-custom-easing.cutaiar.i
 
 Vite + Shadcn + Benjamin De Cock's custom easing curves.
 
-Built during [Animations on the Web](https://animations.dev/learn) to dig deeper into how asing curves effect practical elements.
+Built during [Animations on the Web](https://animations.dev/learn) to dig deeper into how easing curves effect practical elements.

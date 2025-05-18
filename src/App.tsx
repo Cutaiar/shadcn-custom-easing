@@ -13,6 +13,7 @@ import EasePicker, { type Ease } from "@/components/ease-picker";
 import { KeyHint } from "@/components/key-hint";
 import { Label } from "@/components/ui/label";
 import { SourceLink } from "./components/source-link";
+import { cn } from "./lib/utils";
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -40,7 +41,29 @@ function App() {
                 Open <KeyHint>o</KeyHint>
               </Button>
             </SheetTrigger>
-            <SheetContent ease={ease} floating>
+            <SheetContent
+              floating
+              className={cn({
+                "ease-in-quad": ease === "ease-in-quad",
+                "ease-in-cubic": ease === "ease-in-cubic",
+                "ease-in-quart": ease === "ease-in-quart",
+                "ease-in-quint": ease === "ease-in-quint",
+                "ease-in-expo": ease === "ease-in-expo",
+                "ease-in-circ": ease === "ease-in-circ",
+                "ease-out-quad": ease === "ease-out-quad",
+                "ease-out-cubic": ease === "ease-out-cubic",
+                "ease-out-quart": ease === "ease-out-quart",
+                "ease-out-quint": ease === "ease-out-quint",
+                "ease-out-expo": ease === "ease-out-expo",
+                "ease-out-circ": ease === "ease-out-circ",
+                "ease-in-out-quad": ease === "ease-in-out-quad",
+                "ease-in-out-cubic": ease === "ease-in-out-cubic",
+                "ease-in-out-quart": ease === "ease-in-out-quart",
+                "ease-in-out-quint": ease === "ease-in-out-quint",
+                "ease-in-out-expo": ease === "ease-in-out-expo",
+                "ease-in-out-circ": ease === "ease-in-out-circ",
+              })}
+            >
               <SheetHeader>
                 <SheetTitle>What do you think of the easing?</SheetTitle>
                 <SheetDescription>
